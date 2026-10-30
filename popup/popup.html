@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snap Vanish</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-icon">🫰</div>
+        <div class="brand-text">
+          <h1>Snap Vanish</h1>
+          <span class="version">v1.1.0 · Endgame White Ash</span>
+        </div>
+      </div>
+      <div class="toggle-wrapper">
+        <label class="switch" title="Master Extension Toggle">
+          <input type="checkbox" id="masterToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Status Banner -->
+    <div class="status-banner" id="statusBanner">
+      <div class="status-dot"></div>
+      <span id="statusText">Active & Ready to Snap</span>
+    </div>
+
+    <!-- Quick Action: Snap Now Button -->
+    <div class="action-section">
+      <button class="snap-btn" id="snapNowBtn" title="Instant Snap / Unsnap">
+        <span class="btn-icon">🫰</span>
+        <span class="btn-text">
+          <strong id="snapBtnLabel">Snap Now</strong>
+          <small>Vanish into white ash & mute</small>
+        </span>
+        <span class="shortcut-tag">Alt + S</span>
+      </button>
+    </div>
+
+    <!-- Settings Card -->
+    <div class="settings-card">
+      <div class="section-title">DETECTION & ASH DUST SETTINGS</div>
+
+      <!-- Snap Sensitivity -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <span>Snap Sensitivity</span>
+          <small>Hand gesture detection threshold</small>
+        </div>
+        <div class="segmented-control" id="sensitivityControl">
+          <button type="button" data-val="low">Low</button>
+          <button type="button" class="active" data-val="medium">Med</button>
+          <button type="button" data-val="high">High</button>
+        </div>
+      </div>
+
+      <!-- Mic Click Sound Confirmation -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <span>Audio Click Confirm</span>
+          <small>Require mic snap click with gesture</small>
+        </div>
+        <label class="switch-small">
+          <input type="checkbox" id="audioConfirmToggle" checked>
+          <span class="slider-small"></span>
+        </label>
+      </div>
+
+      <!-- Dust Duration -->
+      <div class="setting-row range-row">
+        <div class="setting-label">
+          <span>Ash Dust Duration</span>
+          <small id="durationVal">2.5s</small>
+        </div>
+        <input type="range" id="dustDuration" min="1.0" max="5.0" step="0.5" value="2.5">
+      </div>
+
+      <!-- Dust Direction -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <span>Dust Direction</span>
+          <small>Which way particles blow</small>
+        </div>
+        <select id="dustDirection" class="custom-select">
+          <option value="disperse">🌪️ Disperse (Vortex)</option>
+          <option value="right">➡️ Right</option>
+          <option value="left">⬅️ Left</option>
+          <option value="upward">⬆️ Upward (Ash)</option>
+        </select>
+      </div>
+
+      <!-- Translucent Ash Bubbles -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <span>Ash Bubble Effect</span>
+          <small>Translucent floating micro-spheres & glints</small>
+        </div>
+        <label class="switch-small">
+          <input type="checkbox" id="embersToggle" checked>
+          <span class="slider-small"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <footer class="footer">
+      <button class="studio-link-btn" id="openStudioBtn">
+        <span>🎮 Open Live Test Studio</span>
+      </button>
+      <div class="footer-note">
+        Works on Google Meet · Teams · Zoom · WebRTC
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snap Vanish · Interactive Test Studio</title>
+  <link rel="stylesheet" href="test-studio.css">
+</head>
+<body>
+  <div class="studio-app">
+    <!-- Navigation Bar -->
+    <header class="studio-nav">
+      <div class="nav-brand">
+        <span class="nav-emoji">🫰</span>
+        <div class="nav-title">
+          <h2>Snap Vanish</h2>
+          <span>Webcam White Ash Disintegration & Auto-Mute Studio</span>
+        </div>
+      </div>
+      <div class="nav-badges">
+        <span class="badge badge-purple">100% Local On-Device AI</span>
+        <span class="badge badge-green" id="studioStatus">Camera Ready</span>
+      </div>
+    </header>
+
+    <!-- Main Studio Layout -->
+    <main class="studio-main">
+      <!-- Left Column: Video Feeds -->
+      <section class="video-container">
+        <!-- Main Canvas Viewport (What Meeting Sees) -->
+        <div class="viewport-card">
+          <div class="viewport-header">
+            <h3>Meeting Output (What Others See)</h3>
+            <span class="tag" id="meetingStateTag">🟢 LIVE FEED</span>
+          </div>
+          <div class="canvas-wrapper">
+            <canvas id="outputCanvas" width="640" height="360"></canvas>
+            <div class="snap-toast" id="snapToast">🫰 SNAP! Vanished & Mic Muted</div>
+          </div>
+        </div>
+
+        <!-- Lower Monitors: Hand Tracker & Empty Room Plate -->
+        <div class="sub-monitors">
+          <div class="sub-card">
+            <h4>Hand Tracking & Snap Visualizer</h4>
+            <div class="sub-view">
+              <canvas id="trackingCanvas" width="320" height="180"></canvas>
+              <div class="telemetry" id="handTelemetry">State: IDLE</div>
+            </div>
+          </div>
+
+          <div class="sub-card">
+            <h4>Auto Reconstructed Empty Room</h4>
+            <div class="sub-view">
+              <canvas id="bgPlateCanvas" width="320" height="180"></canvas>
+              <div class="telemetry" id="bgTelemetry">Auto-learning room...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Control Deck & Telemetry -->
+      <aside class="control-deck">
+        <!-- Primary Action -->
+        <div class="deck-card primary-deck">
+          <h3>Trigger Snap</h3>
+          <button class="mega-snap-btn" id="megaSnapBtn">
+            <span class="mega-icon">🫰</span>
+            <div class="mega-text">
+              <span id="megaBtnTitle">Snap to Vanish</span>
+              <small>Turns you into white ash dust & mutes mic</small>
+            </div>
+          </button>
+          <div class="hotkey-hint">Or snap fingers on camera · Backup shortcut: <strong>Alt + S</strong></div>
+        </div>
+
+        <!-- Audio & Snap Meter -->
+        <div class="deck-card">
+          <h3>Audio Click & Mic Meter</h3>
+          <div class="meter-group">
+            <div class="meter-label">
+              <span>Mic Audio Level</span>
+              <span id="micLevelVal">0%</span>
+            </div>
+            <div class="meter-bar">
+              <div class="meter-fill" id="micLevelFill"></div>
+            </div>
+          </div>
+          <div class="meter-group">
+            <div class="meter-label">
+              <span>Snap Acoustic Click Transient</span>
+              <span id="snapTransientVal">Normal</span>
+            </div>
+            <div class="meter-bar">
+              <div class="meter-fill snap-spike" id="snapTransientFill"></div>
+            </div>
+          </div>
+          <div class="mic-status-pill" id="micStatusPill">
+            <span class="pill-dot"></span>
+            <span id="micStatusLabel">Mic Active & Unmuted</span>
+          </div>
+        </div>
+
+        <!-- Settings Controls -->
+        <div class="deck-card">
+          <h3>Studio Controls</h3>
+          
+          <div class="deck-row">
+            <label>Snap Sensitivity</label>
+            <div class="pill-group" id="sensitivityGroup">
+              <button type="button" data-val="low">Low</button>
+              <button type="button" class="active" data-val="medium">Med</button>
+              <button type="button" data-val="high">High</button>
+            </div>
+          </div>
+
+          <div class="deck-row">
+            <label>Mic Click Confirmation</label>
+            <input type="checkbox" id="studioAudioToggle" checked>
+          </div>
+
+          <div class="deck-row">
+            <label>Ash Dust Duration (<span id="dustDurationLabel">2.5s</span>)</label>
+            <input type="range" id="studioDuration" min="1.0" max="5.0" step="0.5" value="2.5">
+          </div>
+
+          <div class="deck-row">
+            <label>Dust Wind Direction</label>
+            <select id="studioDirection">
+              <option value="disperse">🌪️ Disperse Vortex</option>
+              <option value="right">➡️ Right Blow</option>
+              <option value="left">⬅️ Left Blow</option>
+              <option value="upward">⬆️ Upward Ash Drift</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Telemetry Log -->
+        <div class="deck-card">
+          <h3>Live Activity Stream</h3>
+          <div class="event-log" id="eventLog">
+            <div class="log-entry">Studio initialized. Starting camera & mic...</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="../libs/mediapipe/selfie_segmentation.js"></script>
+  <script src="../scripts/snap-engine.js"></script>
+  <script src="../scripts/segmentation-engine.js"></script>
+  <script src="../scripts/thanos-dust-engine.js"></script>
+  <script src="test-studio.js"></script>
+</body>
+</html>
